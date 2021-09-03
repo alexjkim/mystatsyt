@@ -15,8 +15,7 @@ Key differences to call-out from the sketch to the final version:
   Found out later there's no YouTube API with such information currently (Sept/2021). Might consider a possible 3rd party API in the future.
 - Renamed "artist" by "channel"
   Found out that even YouTube Music interprets the Channel name as "Artist" name. Still, the Artist names are now always consistent to the "real" Video artist given Channel names are not always reflective of the Artist name themselves. 
-- Menu is retractible
-  
+- Menu is retractible  
   Add more pannel space. 
 
 
