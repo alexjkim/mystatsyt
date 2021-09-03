@@ -7,6 +7,7 @@ The current version is a client-only (no server, just API calls) that works as a
 
 ### Sketch
 The intial concept is represtend in the sketch below: 
+<br>
 ![new repo](./assets/sketch.png)
 <br>
 Key differences to call-out from the sketch to the final version: 
