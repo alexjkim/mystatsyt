@@ -17,7 +17,7 @@ Key differences to call-out from the sketch to the final version:
 ⋅⋅⋅Found out that even YouTube Music interprets the Channel name as "Artist" name. Still, the Artist names are now always consistent to the "real" Video artist given Channel names are not always reflective of the Artist name themselves. 
 - Menu is retractible
 
-⋅⋅⋅Add more pannel space. 
+  Add more pannel space. 
 
 
 ### System design
