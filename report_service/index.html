@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>MyStatsYT</title>
+  
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+	
+	<div id="closedmenu" class="menu">
+		<div id="menucontenthidden">
+			<p class="app_name">MyStatsYT</p>
+	    	<a href="javascript:void(0)" id="openbutton" onclick="openMenu()">>  MENU  ></a>
+			<a href="javascript:void(0)" id="closebutton" onclick="closeMenu()">&times;</a>
+			<p id="menu_title">How do you want to list your YT stats?</p>
+	    	<a href="#">List by Videos</a>
+	    	<a href="#">List by Channel</a>
+	    	
+		</div>
+	</div>
+	
+	<div id="report" class="report">
+		<span class="report_name">List by Videos</span>
+		
+		<div id="chart">
+			<canvas id="myChart"></canvas>
+		</div>
+	 
+		<div class="list_table" id="report_table">
+			<div class="list_row header" id="list_headers">
+				<div class="list_col rank">Rank</div>
+				<div class="list_col thumbnail">Thumbnail</div>
+				<div class="list_col videoname">Video Name</div>
+				<div class="list_col channel">Channel</div>	
+				<div class="list_col stats">Statistics</div>
+			</div>
+			<div><p>No data</p></div>
+		</div>
+		
+		<div id="pagination"></div>
+	</div>
+		
+
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+	<script src="script.js"></script> 
+</body>
+</html>
