@@ -3,7 +3,13 @@ My stats YT allow you to check your own personal YouTube video consumption stats
 
 The current version is a client-only (no server, just API calls) that works as a Lite version for people that don't want their stats going around third-party servers. 
 <br>
+<br>
 
+### Instructions to use
+1. You need to save the folder chrome_extension and report_service folders in your computer
+2. Install the extension in developer mode
+3. Edit the script.js (from the report_service folder) and include a Cloud Project API key (authorized to use YouTube Data API)
+4. Open index.html (from the report_service folder) in your browser
 
 ### Sketch
 The intial concept is represtend in the sketch below: 
