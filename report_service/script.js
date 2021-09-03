@@ -6,6 +6,7 @@ const microsecondsPerDays = microsecondsPerDay * days;
 
 //Initialize list and page cache
 let list_cache;
+let category_cache = {};
 let page_cache;
 let ordered_keys;
 let itemsPerPage = 10;
@@ -15,6 +16,7 @@ let range_pagination = 5;
 // Must provide API_from a Google Cloud project with YouTube Data API enabled
 // https://developers.google.com/youtube/registering_an_application 
 let API_KEY = [ADD API KEY HERE];
+
 
 
 //Menu inspired by https://www.w3schools.com/howto/howto_js_sidenav.asp
@@ -133,9 +135,6 @@ const getVideoCategoryDetails = async (catId) => {
 	}
 }
 
-
-
-
 //Cleaning up table
 const removeDataRows = (domElement)=>{
 	while (domElement.firstElementChild!=domElement.lastElementChild){
@@ -169,7 +168,6 @@ const lessStats = (id) => {
 	stats.setAttribute("onclick",'moreStats(this.id)');
 }
 
-
 //Render List - can iterate event.data.history and collect vId, visitCount
 // joing data from YouTube API for additional information 
 // https://developers.google.com/youtube/v3/docs/videos/list
@@ -196,27 +194,42 @@ const renderList = async (page) => {
 	
 	//Generate list of ordered video IDs by views
 	ordered_keys = Object.keys(list_cache).sort((a,b)=>list_cache[b].visits.length - list_cache[a].visits.length);
+		
 	
 	//Array of elements for the page (up to videosPerPage)
 	let keysPerPage = ordered_keys.slice((page-1)*itemsPerPage,(page*itemsPerPage));
 	
+	//Identify keys to fetch for details on YouTube API (that have not been populated yet in cache)
+	const needVideoDetails = keysPerPage.filter(key => !list_cache[key].hasOwnProperty("videoName"));
+	let videoDetails = await getVideoDetails(needVideoDetails.join(","));
+	
+	//temporary variable to get category Ids from each video (without repetition)
+	let categoriesList = new Set();
+	
+	//Populate video list cache with each video missing details
+	for (item of videoDetails.items){
+		list_cache[item.id].videoName = item.snippet.title;
+		list_cache[item.id].channelName = item.snippet.channelTitle;
+		list_cache[item.id].thumbnailImg = item.snippet.thumbnails.default.url;
+		list_cache[item.id].kind = item.kind;
+		list_cache[item.id].videoDuration = item.contentDetails.duration;
+		list_cache[item.id].categoryId = item.snippet.categoryId;
+		categoriesList.add(item.snippet.categoryId);
+		list_cache[item.id].statsLike = item.statistics.likeCount;
+		list_cache[item.id].statsAllView = item.statistics.viewCount;
+		console.log("Videos Loaded");
+	}
+	
+	//Populate categories cache with each category missing details
+	const needCatDetails = Array.from(categoriesList).filter(key => !category_cache.hasOwnProperty(key));
+	let categoryDetails = await getVideoCategoryDetails(needCatDetails.join(","));
+	for (item of categoryDetails.items){
+		category_cache[item.id] = {categoryName: item.snippet.title};
+		console.log("Categories Loaded");
+	}
+	
 	//Adding new rows (one per item of the array)
 	for (key of keysPerPage) {
-		
-		//Get detailsOfItem - expand list_cache video object
-		// include information from YouTube Data API	
-		if (!list_cache[key].hasOwnProperty("name")){
-			let videodetails = await getVideoDetails(key);
-		 	list_cache[key].videoName = videodetails.items[0].snippet.title;
-			list_cache[key].channelName = videodetails.items[0].snippet.channelTitle;
-			list_cache[key].thumbnailImg = videodetails.items[0].snippet.thumbnails.default.url;
-			list_cache[key].kind = videodetails.items[0].kind;
-			list_cache[key].videoDuration = videodetails.items[0].contentDetails.duration;
-			list_cache[key].categoryId = videodetails.items[0].snippet.categoryId;
-			list_cache[key].statsLike = videodetails.items[0].statistics.likeCount;
-			list_cache[key].statsAllView = videodetails.items[0].statistics.viewCount;
-			list_cache[key].category = (await getVideoCategoryDetails(videodetails.items[0].snippet.categoryId)).items[0].snippet.title;	
-		}
 
 		//Creating new Row - Aggregates item info
 		const listItem = document.createElement("div");
@@ -371,7 +384,6 @@ window.addEventListener("message", (event) => {
   
 	//render chart
 	drawchart(chartData(event.data.history));
-	
 
 	//render list
 	(async () => {
