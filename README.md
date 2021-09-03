@@ -5,7 +5,7 @@ The current version is a client-only (no server, just API calls) that works as a
 
 
 
-###Sketch
+### Sketch
 The intial concept is represtend in the sketch below: 
 ![new repo](./assets/sketch.png)
 
