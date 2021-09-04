@@ -58,7 +58,7 @@ The MyStatsYT Lite version rely on 3 key components:
   the data of the entire list of videos at once (and then have all data aggregated and ordered) which is much more computer resource consuming. 
   
   
-### Additional features in considration
+### Additional possible features/improvements
 - Server-Client version 
 - Customizable date range
 - Collecting API key in the UI
