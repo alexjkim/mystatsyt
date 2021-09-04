@@ -11,6 +11,12 @@ The current version is a client-only (no server, just API calls) that works as a
 3. Edit the script.js (from the report_service folder) and include a Cloud Project API key (authorized to use YouTube Data API) ([instructions](https://developers.google.com/youtube/registering_an_application))
 4. Open index.html (from the report_service folder) in your browser
 
+### Key use cases
+- Know your aggregated number of access per day in the last 7 days + today
+- Know the videos you accessed the most in the last 7 days + today
+- Know which exact timestamps I had per video access
+- know which channels I accessed the videos from the most
+
 ### Sketch
 The intial concept is represtend in the sketch below: 
 <br>
@@ -38,5 +44,32 @@ The MyStatsYT Lite version rely on 3 key components:
 <br>
 
 
+### Known limitations
+- Not saving history in local file  
+  This means calls to Chrome extension and YouTube Data API are made every time the index.html page is laoded.
+- YouTube Data API - up to 50 videos per HTTP Request  
+  Calls to YouTube Data API follow the Web App pagination configuration. The Web App should be able to list up to 50 videos per time while it depends directly on YouTube Data API to get some of the video information (This should be improved  once local cache file is implemented)
+- History is up to the last 7 days + "Today"  
+  Limitation set to control quantity of data that needs to be processed. (This should be improved  once local cache file is implemented)
+  It's possible to configure to a larger date range (up to the last 3 months -> limited by Chrome Browser) but it may cause the Web App to perform too much API calls and processing (loading may get slow). 
+- List based on Channels (or other video parameters aggregation, when made available) may have poor performance (slow loading) 
+  THe list by videos only do API calls per pagination (default, per 10 videos).
+  Nevertheless, any other listing based on aggregated video parameters retrieved from YouTube API (e.g. Channel name, video category) will require retrieving 
+  the data of the entire list of videos at once (and then have all data aggregated and ordered) which is much more computer resource consuming. 
+  
+  
+### Additional features in considration
+- Server-Client version 
+- Customizable date range
+- Collecting API key in the UI
+- Incorporating more stats (e.g. Global views count, Global likes) 
+- Incorporating whether I "liked" the video or not
+- OAuth authentication mode
+- List by other aggregated video parameters (e.g. Video Category)
+- Identify Video Genre
+- Rank change comparisons over time (e.g. which videos when up and which videos when down)
+- Advanced addional stats: watch time
 
+
+  
 
