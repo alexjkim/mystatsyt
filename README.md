@@ -7,7 +7,7 @@ The current version is a client-only (no server, just API calls) that works as a
 
 ### Instructions to use
 1. You need to save the folder chrome_extension and report_service folders in your computer
-2. Install the extension in developer mode [(instructions)](https://developer.chrome.com/docs/extensions/mv3/faq/#:~:text=You%20can%20start%20by%20turning,a%20packaged%20extension%2C%20and%20more.)
+2. Install the extension in developer mode ([instructions](https://developer.chrome.com/docs/extensions/mv3/faq/#:~:text=You%20can%20start%20by%20turning,a%20packaged%20extension%2C%20and%20more.))
 3. Edit the script.js (from the report_service folder) and include a Cloud Project API key (authorized to use YouTube Data API)
 4. Open index.html (from the report_service folder) in your browser
 
