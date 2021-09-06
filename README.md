@@ -8,8 +8,8 @@ The current version is a client-only (no server, just API calls) that works as a
 ### Instructions to use
 1. You need to save the folder chrome_extension and report_service folders in your computer
 2. Install the extension in developer mode ([instructions](https://developer.chrome.com/docs/extensions/mv3/faq/#:~:text=You%20can%20start%20by%20turning,a%20packaged%20extension%2C%20and%20more.))
-3. Edit the script.js (from the report_service folder) and include a Cloud Project API key (authorized to use YouTube Data API) ([instructions](https://developers.google.com/youtube/registering_an_application))
-4. Open index.html (from the report_service folder) in your browser
+3. Make sure you have a Cloud Project API key (authorized to use YouTube Data API) ([instructions to create an API Key](https://developers.google.com/youtube/registering_an_application))
+4. Open index.html (from the report_service folder) in your browser and provide your API key when prompted
 
 ### Key use cases
 - Know your aggregated number of access per day in the last 7 days + today
@@ -49,21 +49,24 @@ The MyStatsYT Lite version rely on 3 key components:
   This means calls to Chrome extension and YouTube Data API are made every time the index.html page is laoded.
 - YouTube Data API - up to 50 videos per HTTP Request  
   Calls to YouTube Data API follow the Web App pagination configuration. The Web App should be able to list up to 50 videos per time while it depends directly on YouTube Data API to get some of the video information (This should be improved  once local cache file is implemented)
-- History is up to the last 7 days + "Today"  
+- History is up to the last 90 days + "Today"  
   Limitation set to control quantity of data that needs to be processed. (This should be improved  once local cache file is implemented)
   It's possible to configure to a larger date range (up to the last 3 months -> limited by Chrome Browser) but it may cause the Web App to perform too much API calls and processing (loading may get slow). 
+- Startdate parameter for history seems buggy for some day/hour   
+  Report seem to not load for some day/hour combination for startdate (initial date to pull Chrome History). Observed problem when setting it for last 7 days on Sep. 5. 
 - List based on Channels (or other video parameters aggregation, when made available) may have poor performance (slow loading) 
-  THe list by videos only do API calls per pagination (default, per 10 videos).
+  The list by videos only do API calls per pagination (default, per 10 videos).
   Nevertheless, any other listing based on aggregated video parameters retrieved from YouTube API (e.g. Channel name, video category) will require retrieving 
   the data of the entire list of videos at once (and then have all data aggregated and ordered) which is much more computer resource consuming. 
   
   
 ### Additional possible features/improvements
+- Improve caching 
 - Server-Client version 
 - Customizable date range
-- Collecting API key in the UI
+- Storing collected API key
 - Incorporating more stats (e.g. Global views count, Global likes) 
-- Incorporating whether I "liked" the video or not
+- Incorporating whether the user "liked" the video or not
 - OAuth authentication mode
 - List by other aggregated video parameters (e.g. Video Category)
 - Identify Video Genre
