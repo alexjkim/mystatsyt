@@ -12,8 +12,8 @@ The current version is a client-only (no server, just API calls) that works as a
 4. Open index.html (from the report_service folder) in your browser and provide your API key when prompted
 
 ### Key use cases
-- Know your aggregated number of access per day in the last 7 days + today
-- Know the videos you accessed the most in the last 7 days + today
+- Know your aggregated number of access per day
+- Know the videos you accessed the most
 - Know which exact timestamps I had per video access
 - know which channels I accessed the videos from the most
 
