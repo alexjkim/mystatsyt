@@ -15,11 +15,11 @@
 	<div id="closedmenu" class="menu">
 		<div id="menucontenthidden">
 			<p class="app_name">MyStatsYT</p>
-	    	<a href="javascript:void(0)" id="openbutton" onclick="openMenu()">>  MENU  ></a>
-			<a href="javascript:void(0)" id="closebutton" onclick="closeMenu()">&times;</a>
+	    	<a class="menu_report" href="javascript:void(0)" id="openbutton" onclick="openMenu()">>  MENU  ></a>
+			<a class="menu_report" href="javascript:void(0)" id="closebutton" onclick="closeMenu()">&times;</a>
 			<p id="menu_title">How do you want to list your YT stats?</p>
-	    	<a href="#">List by Videos</a>
-	    	<a href="#">List by Channel</a>
+	    	<div class="menu_report" onclick="renderList(page_cache['byvideo'], 'byvideo');">List by Videos</div>
+	    	<div class="menu_report" onclick="renderList(page_cache['bychannel'], 'bychannel');">List by Channel</div>
 	    	
 		</div>
 	</div>
@@ -32,16 +32,10 @@
 		</div>
 	 
 		<div class="list_table" id="report_table">
-			<div class="list_row header" id="list_headers">
-				<div class="list_col rank">Rank</div>
-				<div class="list_col thumbnail">Thumbnail</div>
-				<div class="list_col videoname">Video Name</div>
-				<div class="list_col channel">Channel</div>	
-				<div class="list_col stats">Statistics</div>
-			</div>
-			<div><p>No data</p></div>
+			<div class="list_row header" id="list_headers"></div>
+			<div><p id="no_data">No data available. Check if you've installed the Chrome extension And/Or the YouTube API Key</p></div>
 		</div>
-		
+		<div id="loader"></div>
 		<div id="pagination"></div>
 	</div>
 		

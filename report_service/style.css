@@ -22,15 +22,15 @@
 	margin: 0px;
 }
 
-.menu a{
+.menu .menu_report{
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 18px;
     color: #818181;
     display: block;
 }
 
-.menu a:hover{
+.menu .menu_report:hover{
     color: #F8C4B9;
 }
 
@@ -236,5 +236,30 @@
 	margin-bottom: 40px;
 	height:25vh; 
 
+}
+
+#no_data{
+	color: #818181;
+	padding: 8px;
+}
+
+#loader {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 1;
+	width: 120px;
+	height: 120px;
+	margin: -76px 0 0 -76px;
+	border: 30px solid #f3f3f3;
+	border-radius: 70%;
+	border-top: 30px solid #111;
+  	animation: spin 2s linear infinite;
+  	display:none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 

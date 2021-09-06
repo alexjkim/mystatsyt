@@ -11,6 +11,7 @@ window.addEventListener("message", (event) => {
 		chrome.runtime.sendMessage({handshake: "whatismyhistory", starttime: event.data.starttimestamp}, function(response) {
   			 window.postMessage({ type: "YTExt_Data", history: response.data}, "*");
 		});
+		
 	}
 }, false);
 
