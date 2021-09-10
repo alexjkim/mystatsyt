@@ -54,13 +54,14 @@ The MyStatsYT Lite version rely on 3 key components:
   Currently, this is up to the last 3 months due to limitations by Chrome Browser History. 
 - Startdate parameter for history seems buggy for some day/hour   
   Report seem to not load for some day/hour combination for startdate (initial date to pull Chrome History). Observed problem when setting it for last 7 days on Sep. 5. 
-- List based on Channels (or other video parameters aggregation, when made available) may have poor performance (slow loading) 
+- List based on Channels (or other video parameters aggregation, when made available) may have poor performance (slow loading)  
   The list by videos only do API calls per pagination (default, per 10 videos).
   Nevertheless, any other listing based on aggregated video parameters retrieved from YouTube API (e.g. Channel name, video category) will require retrieving 
   the data of the entire list of videos at once (and then have all data aggregated and ordered) which is much more computer resource consuming. 
   
   
 ### Additional possible features/improvements
+- Separate rendering from data pull 
 - Improve caching 
 - Server-Client version 
 - Customizable date range
