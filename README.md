@@ -48,10 +48,10 @@ The MyStatsYT Lite version rely on 3 key components:
 - Not saving history in local file  
   This means calls to Chrome extension and YouTube Data API are made every time the index.html page is laoded.
 - YouTube Data API - up to 50 videos per HTTP Request  
-  Calls to YouTube Data API follow the Web App pagination configuration. The Web App should be able to list up to 50 videos per time while it depends directly on YouTube Data API to get some of the video information (This should be improved  once local cache file is implemented)
+  Calls to YouTube Data API follow the Web App report and pagination configuration. The Web App should be able to list up to 50 videos per time while it depends directly on YouTube Data API to get some of the video information (This should be improved  once local cache file is implemented)
 - History is up to the last 90 days + "Today"  
   Limitation set to control quantity of data that needs to be processed. (This should be improved  once local cache file is implemented)
-  It's possible to configure to a larger date range (up to the last 3 months -> limited by Chrome Browser) but it may cause the Web App to perform too much API calls and processing (loading may get slow). 
+  Currently, this is up to the last 3 months due to limitations by Chrome Browser History. 
 - Startdate parameter for history seems buggy for some day/hour   
   Report seem to not load for some day/hour combination for startdate (initial date to pull Chrome History). Observed problem when setting it for last 7 days on Sep. 5. 
 - List based on Channels (or other video parameters aggregation, when made available) may have poor performance (slow loading) 
